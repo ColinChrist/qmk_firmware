@@ -25,6 +25,7 @@
 #define PURPLE {HSV_PURPLE}
 #define MAGENT {HSV_MAGENTA}
 #define PINK {HSV_PINK}
+#define WHITE {HSV_WHITE}
 
 //========================================================== CONFIGURABLE DEFAULTS ==========================================================
 #define RGB_DEFAULT_TIME_OUT 30
@@ -53,6 +54,7 @@ enum layout_names {
     _VL,         // VIM Layout: VIM shorcuts and macros
     _YL,         // Yakuake Layout: Yakuake drop-down terminal shortcuts and macros
     _EL,         // KDE Layout: Shortcuts for KDE desktop using default KDE shortcuts settings
+    GWL,	// Layout for GuildWars2
 };
 
 enum tapdance_keycodes {
