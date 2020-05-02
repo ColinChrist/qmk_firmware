@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_FL] = LAYOUT(
         _______, DM_PLY1, DM_PLY2, _______,  _______, DM_REC1, DM_REC2, _______,  _______,  DM_RSTP, _______, KC_WAKE, KC_SLEP,          KC_MUTE, TERM_ON, TERM_OFF,
-        _______, _______, TG(_ML), TG(_GL),  TG(_VL), TG(_YL), TG(GWL), _______,  _______,  ROUT_FM, ROUT_TG, ROUT_VD, ROUT_VI, _______, KC_MSTP, KC_MPLY, KC_VOLU,
+        _______, _______, TG(_ML), TG(_GL),  TG(_VL), TG(GWL), _______, _______,  _______,  ROUT_FM, ROUT_TG, ROUT_VD, ROUT_VI, _______, KC_MSTP, KC_MPLY, KC_VOLU,
         RGB_M_P, RGB_SPD, RGB_VAI, RGB_SPI,  RGB_HUI, RGB_SAI, _______, U_T_AUTO, U_T_AGCR, _______, _______, _______, _______, _______, KC_MPRV, KC_MNXT, KC_VOLD,
         _______, RGB_RMOD,RGB_VAD, RGB_MOD,  RGB_HUD, RGB_SAD, _______, _______,  _______,  _______, _______, _______, _______,
         _______, RGB_TOG, _______, COPY_ALL, _______, MD_BOOT, NK_TOGG, _______,  _______,  _______, _______, _______,                            KC_BRIU,
@@ -76,12 +76,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     // Nobody needs CAPS in vim, so It's replaced by ESC
     [_VL] = LAYOUT(
+        KC_ESC,           KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,             KC_F12,           KC_PSCR, KC_SLCK, KC_PAUS,
+        KC_GRV,           KC_1,    KC_2,    KC_3,    KC_4,    KC_5,   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,            KC_EQL,  KC_BSPC, KC_INS,  KC_HOME, KC_PGUP,
+        KC_TAB,           KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,            KC_RBRC, KC_BSLS, KC_DEL,  KC_END,  KC_PGDN,
+        KC_ESC,           KC_A,    KC_S,    KC_D,    KC_F,    KC_G,   KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,            KC_ENT,
+        LM(UVL,MOD_LSFT),       KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, LM(UVL,MOD_RSFT),                                    KC_UP,
+        KC_LCTL,          TG(_VL), KC_LALT,                   KC_SPC,                            KC_RALT, TG(_VL), KC_APP,             KC_RCTL,          KC_LEFT, KC_DOWN, KC_RGHT
+    ),
+    // Upper-Case vim layout. It's the same layout, but with different lighting
+    [UVL] = LAYOUT(
         KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,    KC_F12,           KC_PSCR, KC_SLCK, KC_PAUS,
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,   KC_EQL,  KC_BSPC, KC_INS,  KC_HOME, KC_PGUP,
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,   KC_RBRC, KC_BSLS, KC_DEL,  KC_END,  KC_PGDN,
         KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,   KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,   KC_ENT,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_SFTENT,                            KC_UP,
-        KC_LCTL, KC_LGUI, KC_LALT,                   KC_SPC,                            KC_RALT, TG(_VL), KC_APP,    KC_RCTL,          KC_LEFT, KC_DOWN, KC_RGHT
+        _______, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,                              KC_UP,
+        KC_LCTL, TG(_VL), KC_LALT,                   KC_SPC,                            KC_RALT, TG(_VL), KC_APP,    KC_RCTL,          KC_LEFT, KC_DOWN, KC_RGHT
     ),
     // Works with https://github.com/ash0x0/config/blob/master/yakuake.shortcuts
     [_YL] = LAYOUT(
@@ -159,12 +168,20 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         _______, _______, _______,                   _______,                            _______, PINK,    _______, _______,          _______, _______, _______
     },
     [_VL] = {
-        PURPLE,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______,
-        _______, _______, _______, TURQ,    _______, _______, _______, _______, TURQ,    _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, AZURE,   AZURE,   AZURE,   PURPLE,  _______, BLUE,    PURPLE,  PURPLE,  PURPLE,  BLUE,    _______, _______, _______, _______, _______, _______,
-        _______, PURPLE,  _______, BLUE,    _______, GOLD,    GOLDEN,  GOLDEN,  GOLDEN,  GOLDEN,  _______, _______, _______,
-        _______, _______, BLUE,    BLUE,    _______, _______, TURQ,    _______, _______, _______, TURQ,    _______,                            _______,
-        _______, _______, _______,                   _______,                            _______, PINK,    _______, _______,          _______, _______, _______
+        YELLOW,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______,
+        GREEN,   _______, _______, _______, _______, _______, _______, _______, _______, _______, GREEN,   GREEN,   ORANGE,  _______, _______, _______, _______,
+        _______, YELLOW,  GREEN,   GREEN,   YELLOW,  GREEN,   ORANGE,  YELLOW,  YELLOW,  YELLOW,  YELLOW,  GREEN,   GREEN,   _______, _______, _______, _______,
+        YELLOW,  YELLOW,  YELLOW,  ORANGE,  GREEN,   _______, GREEN,   GREEN,   GREEN,   GREEN,   GREEN,   GREEN,   _______,
+        _______, _______, YELLOW,  ORANGE,  YELLOW,  GREEN,   GREEN,   YELLOW,  GREEN,   YELLOW,  GREEN,   _______,                            _______,
+        _______, PINK,    _______,                   _______,                            _______, PINK,    _______, _______,          _______, _______, _______
+    },
+    [UVL] = {
+        RED,     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______,
+        GREEN,   _______, _______, _______, _______, _______, _______, _______, _______, _______, GREEN,   GREEN,   ORANGE,  _______, _______, _______, _______,
+        _______, YELLOW,  GREEN,   GREEN,   YELLOW,  GREEN,   ORANGE,  YELLOW,  YELLOW,  YELLOW,  YELLOW,  GREEN,   GREEN,   _______, _______, _______, _______,
+        YELLOW,  YELLOW,  YELLOW,  ORANGE,  GREEN,   _______, GREEN,   GREEN,   GREEN,   GREEN,   GREEN,   GREEN,   _______,
+        _______, _______, YELLOW,  ORANGE,  YELLOW,  GREEN,   GREEN,   YELLOW,  GREEN,   YELLOW,  GREEN,   _______,                            _______,
+        _______, PINK,    _______,                   _______,                            _______, PINK,    _______, _______,          _______, _______, _______
     },
     [_YL] = {
         RED,     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______,
