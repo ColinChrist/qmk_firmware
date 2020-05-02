@@ -55,7 +55,7 @@ enum layout_names {
     UVL,	 // upper VIM Layout: Different Lighting
     _YL,         // Yakuake Layout: Yakuake drop-down terminal shortcuts and macros
     _EL,         // KDE Layout: Shortcuts for KDE desktop using default KDE shortcuts settings
-    GWL,	// Layout for GuildWars2
+    GWL,	 // Layout for GuildWars2
 };
 
 enum tapdance_keycodes {
@@ -100,4 +100,6 @@ enum string_macro_keycodes {
     G_COMM,                // git commit
     G_STAT,                // git status
     G_LOG,                 // git log
+    G_COMAM,		   // git commit -am "#
+    G_REBMI,		   // git rebase master -i
 };

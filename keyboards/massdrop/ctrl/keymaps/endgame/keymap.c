@@ -22,6 +22,8 @@ static const char * sendstring_commands[] = {
     "git commit ",
     "git status ",
     "git log ",
+    "git commit -am \"#",
+    "git rebase master -i",
 };
 
 //Associate our tap dance key with its functionality
@@ -69,8 +71,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_GL] = LAYOUT(
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, G_REMTE, G_RESET, G_REBAS, _______, G_INIT,  _______, G_PULL,  G_PUSH,  _______, _______, _______, _______, _______,
-        _______, G_ADD,   G_STAT,  G_DIFF,  G_FETCH, _______, _______, _______, _______, G_LOG,   _______, _______, _______,
+        _______, _______, _______, _______, G_REMTE, G_RESET, G_REBAS, G_REBMI, G_INIT,  _______, G_PULL,  G_PUSH,  _______, _______, _______, _______, _______,
+        _______, G_ADD,   G_STAT,  G_DIFF,  G_FETCH, _______, _______, _______, _______, G_LOG,   _______, G_COMAM, _______,
         _______, G_CONF,  G_CHECK, G_CLONE, G_COMM,  G_BRANH, _______, G_MERGE, _______, _______, _______, _______,                            _______,
         _______, _______, _______,                   _______,                            _______, TG(_GL), _______, _______,          _______, _______, _______
     ),
@@ -162,8 +164,8 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     [_GL] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, BLUE,    AZURE,   AZURE,   _______, CYAN,    _______, TURQ,    PURPLE,  _______, _______, _______, _______, _______,
-        _______, CORAL,   GREEN,   GREEN,   TURQ,    _______, _______, _______, _______, GREEN,   _______, _______, _______,
+        _______, _______, _______, _______, BLUE,    AZURE,   AZURE,   ORANGE,  CYAN,    _______, TURQ,    PURPLE,  _______, _______, _______, _______, _______,
+        _______, CORAL,   GREEN,   GREEN,   TURQ,    _______, _______, _______, _______, GREEN,   _______, ORANGE,  _______,
         _______, CYAN,    CHART,   TURQ,    ORANGE,  CHART,   _______, CHART,   _______, _______, _______, _______,                            _______,
         _______, _______, _______,                   _______,                            _______, PINK,    _______, _______,          _______, _______, _______
     },
@@ -176,11 +178,11 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         _______, PINK,    _______,                   _______,                            _______, PINK,    _______, _______,          _______, _______, _______
     },
     [UVL] = {
-        RED,     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______,
-        GREEN,   _______, _______, _______, _______, _______, _______, _______, _______, _______, GREEN,   GREEN,   ORANGE,  _______, _______, _______, _______,
-        _______, YELLOW,  GREEN,   GREEN,   YELLOW,  GREEN,   ORANGE,  YELLOW,  YELLOW,  YELLOW,  YELLOW,  GREEN,   GREEN,   _______, _______, _______, _______,
-        YELLOW,  YELLOW,  YELLOW,  ORANGE,  GREEN,   _______, GREEN,   GREEN,   GREEN,   GREEN,   GREEN,   GREEN,   _______,
-        _______, _______, YELLOW,  ORANGE,  YELLOW,  GREEN,   GREEN,   YELLOW,  GREEN,   YELLOW,  GREEN,   _______,                            _______,
+        YELLOW,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______,
+        YELLOW,  ORANGE,  YELLOW,  GREEN,   GREEN,   GREEN,   GREEN,   YELLOW,  GREEN,   GREEN,   GREEN,   GREEN,   GREEN,   _______, _______, _______, _______,
+        _______, YELLOW,  GREEN,   GREEN,   YELLOW,  GREEN,   YELLOW,  YELLOW,  YELLOW,  YELLOW,  YELLOW,  GREEN,   GREEN,   _______, _______, _______, _______,
+        YELLOW,  YELLOW,  YELLOW,  YELLOW,  GREEN,   GREEN,   GREEN,   YELLOW,  GREEN,   GREEN,   YELLOW,  _______, GREEN,
+	_______, _______, YELLOW,  YELLOW,  YELLOW,  GREEN,   GREEN,   GREEN,   ORANGE,  ORANGE,  GREEN,   _______,                            _______,
         _______, PINK,    _______,                   _______,                            _______, PINK,    _______, _______,          _______, _______, _______
     },
     [_YL] = {
