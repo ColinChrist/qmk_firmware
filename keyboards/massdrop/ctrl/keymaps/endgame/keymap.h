@@ -25,7 +25,6 @@
 #define PURPLE {HSV_PURPLE}
 #define MAGENT {HSV_MAGENTA}
 #define PINK {HSV_PINK}
-#define WHITE {HSV_WHITE}
 
 //========================================================== CONFIGURABLE DEFAULTS ==========================================================
 #define RGB_DEFAULT_TIME_OUT 30
@@ -52,19 +51,14 @@ enum layout_names {
     _ML,         // Mouse Layout: Mouse Keys and mouse movement
     _GL,         // GIT Layout: GIT shortcuts and macros
     _VL,         // VIM Layout: VIM shorcuts and macros
-    UVL,	 // upper VIM Layout: Different Lighting
-    VML,	 // Vim Mouse Layout: When you need mouse or arrow key, but are too lazy to move ur hand
     _YL,         // Yakuake Layout: Yakuake drop-down terminal shortcuts and macros
     _EL,         // KDE Layout: Shortcuts for KDE desktop using default KDE shortcuts settings
-    GWL,	 // Layout for GuildWars2
 };
 
 enum tapdance_keycodes {
     TD_LGUI_ML = 0,     // Tap dance key to switch to mouse layer _ML
     TD_APP_YL,
     TD_CTRL_TERM,       // Tap dance key to open terminal on LCTRL double press
-    TD_LGUI_VML,
-    TD_CTRL_VML,
 };
 
 enum ctrl_keycodes {
@@ -103,6 +97,4 @@ enum string_macro_keycodes {
     G_COMM,                // git commit
     G_STAT,                // git status
     G_LOG,                 // git log
-    G_COMAM,		   // git commit -am "#
-    G_REBMI,		   // git rebase master -i
 };

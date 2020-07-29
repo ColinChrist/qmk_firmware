@@ -22,8 +22,6 @@ static const char * sendstring_commands[] = {
     "git commit ",
     "git status ",
     "git log ",
-    "git commit -am \"#",
-    "git rebase origin/master -i",
 };
 
 //Associate our tap dance key with its functionality
@@ -31,8 +29,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_LGUI_ML] = ACTION_TAP_DANCE_LAYER_TOGGLE(KC_LGUI, _ML),
     [TD_APP_YL] = ACTION_TAP_DANCE_LAYER_TOGGLE(KC_APP, _YL),
     [TD_CTRL_TERM] = ACTION_TAP_DANCE_DOUBLE(KC_LCTRL, LCA(KC_T)),
-    [TD_LGUI_VML] = ACTION_TAP_DANCE_LAYER_TOGGLE(KC_LGUI, VML),
-    [TD_CTRL_VML] = ACTION_TAP_DANCE_LAYER_TOGGLE(KC_LCTL, VML),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -52,12 +48,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,            KC_Q,           KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,       KC_RBRC, KC_BSLS, KC_DEL,  KC_END,  KC_PGDN,
         KC_CAPS,           KC_A,           KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,       KC_ENT,
         KC_LSFT,           KC_Z,           KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_SFTENT,                                KC_UP,
-        TD(TD_CTRL_TERM),  TD(TD_LGUI_VML), KC_LALT,                   KC_SPC,                             KC_RALT, TT(_FL), TD(TD_APP_YL), KC_RCTL,          KC_LEFT, KC_DOWN, KC_RGHT
+        TD(TD_CTRL_TERM),  TD(TD_LGUI_ML), KC_LALT,                   KC_SPC,                             KC_RALT, TT(_FL), TD(TD_APP_YL), KC_RCTL,          KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [_FL] = LAYOUT(
-        KC_PWR,  DM_PLY1, DM_PLY2, _______,  _______, DM_REC1, DM_REC2, _______,  _______,  DM_RSTP, _______, KC_WAKE, KC_SLEP,          KC_MUTE, TERM_ON, TERM_OFF,
-        _______, _______, TG(_ML), TG(_GL),  TG(_VL), TG(GWL), _______, _______,  _______,  ROUT_FM, ROUT_TG, ROUT_VD, ROUT_VI, _______, KC_MSTP, KC_MPLY, KC_VOLU,
-        RGB_M_P, RGB_SPD, RGB_VAI, RGB_SPI,  RGB_HUI, RGB_SAI, _______, U_T_AUTO, U_T_AGCR, _______, _______, _______, _______, RESET,   KC_MPRV, KC_MNXT, KC_VOLD,
+        _______, DM_PLY1, DM_PLY2, _______,  _______, DM_REC1, DM_REC2, _______,  _______,  DM_RSTP, _______, KC_WAKE, KC_SLEP,          KC_MUTE, TERM_ON, TERM_OFF,
+        _______, _______, TG(_ML), TG(_GL),  TG(_VL), TG(_YL), _______, _______,  _______,  ROUT_FM, ROUT_TG, ROUT_VD, ROUT_VI, _______, KC_MSTP, KC_MPLY, KC_VOLU,
+        RGB_M_P, RGB_SPD, RGB_VAI, RGB_SPI,  RGB_HUI, RGB_SAI, _______, U_T_AUTO, U_T_AGCR, _______, _______, _______, _______, _______, KC_MPRV, KC_MNXT, KC_VOLD,
         _______, RGB_RMOD,RGB_VAD, RGB_MOD,  RGB_HUD, RGB_SAD, _______, _______,  _______,  _______, _______, _______, _______,
         _______, RGB_TOG, _______, COPY_ALL, _______, MD_BOOT, NK_TOGG, _______,  _______,  _______, _______, _______,                            KC_BRIU,
         _______, _______, _______,                    _______,                              _______, TG(_FL), _______, _______,          _______, KC_BRID, _______
@@ -65,44 +61,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ML] = LAYOUT(
         _______, KC_ACL0, KC_ACL1, KC_ACL2, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______,
         _______, KC_BTN4, KC_BTN3, KC_BTN5, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, _______, _______, KC_BTN1, KC_BTN2, _______, KC_WH_U, _______, _______, _______, _______, _______, _______,
-        _______, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_WH_D, _______, _______,
+        _______, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, _______, _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, SEL_CPY, _______, _______, _______, _______, _______, _______, _______, _______,                            KC_MS_U,
         _______, TG(_ML), _______,                   _______,                            _______, TG(_ML), _______, _______,          KC_MS_L, KC_MS_D, KC_MS_R
     ),
     [_GL] = LAYOUT(
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, G_REMTE, G_RESET, G_REBAS, G_REBMI, G_INIT,  _______, G_PULL,  G_PUSH,  _______, _______, _______, _______, _______,
-        _______, G_ADD,   G_STAT,  G_DIFF,  G_FETCH, _______, _______, _______, _______, G_LOG,   _______, G_COMAM, _______,
+        _______, _______, _______, _______, G_REMTE, G_RESET, G_REBAS, _______, G_INIT,  _______, G_PULL,  G_PUSH,  _______, _______, _______, _______, _______,
+        _______, G_ADD,   G_STAT,  G_DIFF,  G_FETCH, _______, _______, _______, _______, G_LOG,   _______, _______, _______,
         _______, G_CONF,  G_CHECK, G_CLONE, G_COMM,  G_BRANH, _______, G_MERGE, _______, _______, _______, _______,                            _______,
-        _______, TG(_GL), _______,                   TG(_GL),                            _______, TG(_GL), _______, _______,          _______, _______, _______
+        _______, _______, _______,                   _______,                            _______, TG(_GL), _______, _______,          _______, _______, _______
     ),
-    // Nobody needs CAPS in vim, so It's replaced by ESC
+    // This layout doesn't have custom keycodes for now, just custom LED config
     [_VL] = LAYOUT(
-        KC_ESC,           	KC_F1,    KC_F2,   KC_F3,   KC_F4,   KC_F5,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,             KC_F12,           KC_PSCR, KC_SLCK, KC_PAUS,
-        KC_GRV,           	KC_1,  	  KC_2,    KC_3,    KC_4,    KC_5,   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,            KC_EQL,  KC_BSPC, KC_INS,  KC_HOME, KC_PGUP,
-        KC_TAB,           	KC_Q,  	  KC_W,    KC_E,    KC_R,    KC_T,   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,            KC_RBRC, KC_BSLS, KC_DEL,  KC_END,  KC_PGDN,
-        KC_ESC,           	KC_A,  	  KC_S,    KC_D,    KC_F,    KC_G,   KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,            KC_ENT,
-        LM(UVL,MOD_LSFT),       KC_Z,  	  KC_X,    KC_C,    KC_V,    KC_B,   KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, LM(UVL,MOD_RSFT),                              KC_UP,
-        _______,    TD(TD_LGUI_VML),  KC_LALT,                   KC_SPC,                            KC_RALT, TG(_VL), KC_APP,             KC_RCTL,          KC_LEFT, KC_DOWN, KC_RGHT
-    ),
-    // Upper-Case vim layout. It's the same layout, but with different lighting
-    [UVL] = LAYOUT(
-        KC_ESC,  	  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,    KC_F12,           KC_PSCR, KC_SLCK, KC_PAUS,
-        KC_GRV,  	  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,   KC_EQL,  KC_BSPC, KC_INS,  KC_HOME, KC_PGUP,
-        KC_TAB,  	  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,   KC_RBRC, KC_BSLS, KC_DEL,  KC_END,  KC_PGDN,
-        KC_ESC,  	  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,   KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,   KC_ENT,
-        _______, 	  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,                              KC_UP,
-        _______,      TG(VML), KC_LALT,                   KC_SPC,                            KC_RALT, TG(_VL), KC_APP,    KC_RCTL,          KC_LEFT, KC_DOWN, KC_RGHT
-    ),
-    [VML] = LAYOUT(
-        _______, _______, KC_ACL0, KC_ACL1, KC_ACL2, _______, _______, _______, _______, _______,    _______,       _______, _______,          _______, _______, _______,
-        _______, _______, KC_BTN4, KC_BTN3, KC_BTN5, _______, _______, _______, _______, _______,    _______,       _______, _______, _______, _______, _______, _______,
-        _______, _______, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, _______, KC_UP,   _______, _______,    G(KC_UP),      _______, _______, _______, _______, _______, _______,
-        _______, _______, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, KC_LEFT, KC_DOWN, KC_RGHT, G(KC_LEFT), G(KC_DOWN), G(KC_RGHT), _______,
-        _______, _______, _______, SEL_CPY, _______, _______, _______, _______, _______, _______,    _______,       _______,                            KC_MS_U,
-        _______, TG(VML), _______,                   _______,                            _______,    TG(VML),       _______, _______,          KC_MS_L, KC_MS_D, KC_MS_R
+        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,    KC_F12,           KC_PSCR, KC_SLCK, KC_PAUS,
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,   KC_EQL,  KC_BSPC, KC_INS,  KC_HOME, KC_PGUP,
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,   KC_RBRC, KC_BSLS, KC_DEL,  KC_END,  KC_PGDN,
+        KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,   KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,   KC_ENT,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_SFTENT,                            KC_UP,
+        KC_LCTL, KC_LGUI, KC_LALT,                   KC_SPC,                            KC_RALT, TG(_VL), KC_APP,    KC_RCTL,          KC_LEFT, KC_DOWN, KC_RGHT
     ),
     // Works with https://github.com/ash0x0/config/blob/master/yakuake.shortcuts
     [_YL] = LAYOUT(
@@ -112,15 +91,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,  KC_A,  KC_NO, KC_D,  KC_NO, KC_G,  KC_NO, KC_J,  KC_K,    KC_L,   KC_SCLN, KC_NO, KC_NO,
         KC_NO,  KC_Z,  KC_X,  KC_NO, KC_NO, KC_NO, KC_NO, KC_M,  KC_COMM, KC_DOT, KC_NO,   KC_NO,                            KC_UP,
         KC_NO,  KC_NO, KC_NO,               KC_NO,                        KC_NO,  TG(_YL), KC_NO, KC_NO,            KC_LEFT, KC_DOWN, KC_RGHT
-    ),
-    // This layout doesn't have custom keycodes for now, just custom LED config
-    [GWL] = LAYOUT(
-        KC_ESC,            KC_F1,          KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,        KC_F12,           KC_PSCR, KC_SLCK, KC_PAUS,
-        KC_GRV,            KC_1,           KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,       KC_EQL,  KC_BSPC, KC_INS,  KC_HOME, KC_PGUP,
-        KC_TAB,            KC_Q,           KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,       KC_RBRC, KC_BSLS, KC_DEL,  KC_END,  KC_PGDN,
-        KC_CAPS,           KC_A,           KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,       KC_ENT,
-        KC_LSFT,           KC_Z,           KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_SFTENT,                                KC_UP,
-        TD(TD_CTRL_TERM),  TD(TD_LGUI_ML), KC_LALT,                   KC_SPC,                             KC_RALT, TG(GWL), TD(TD_APP_YL), KC_RCTL,          KC_LEFT, KC_DOWN, KC_RGHT
     ),
     /*
     [X] = LAYOUT(
@@ -147,17 +117,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	    63,      64,      65,      66,      67,      68,      69,      70,      71,      72,      73,      74,                                   75,
 	    76,      77,      78,                        79,                                 80,      81,      82,      83,                 84,      85,      86
 	),
-	*/
+    */
 };
 
 #ifdef _______
 #undef _______
 #define _______ {0, 0, 0}
+
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     [_FL] = {
-        RED,     CORAL,   CORAL,   _______, _______, CORAL,   CORAL,   _______, _______, CORAL,   _______, YELLOW,  YELLOW,           TEAL,    GOLD,   GOLD,
-        _______, _______, PINK,    PINK,    GREEN,   PINK,    _______, _______, _______, GREEN,   GREEN,   GREEN,   GREEN,   _______, TEAL,    TEAL,   TEAL,
-        ORANGE,  ORANGE,  ORANGE,  ORANGE,  ORANGE,  ORANGE,  _______, AZURE,   AZURE,   _______, _______, _______, _______, RED,     TEAL,    TEAL,   TEAL,
+        _______, CORAL,   CORAL,   _______, _______, CORAL,   CORAL,   _______, _______, CORAL,   _______, YELLOW,  YELLOW,           TEAL,    GOLD,   GOLD,
+        _______, _______, PINK,    PINK,    PINK,    PINK,    _______, _______, _______, GREEN,   GREEN,   GREEN,   GREEN,   _______, TEAL,    TEAL,   TEAL,
+        ORANGE,  ORANGE,  ORANGE,  ORANGE,  ORANGE,  ORANGE,  _______, AZURE,   AZURE,   _______, _______, _______, _______, _______, TEAL,    TEAL,   TEAL,
         _______, ORANGE,  ORANGE,  ORANGE,  ORANGE,  ORANGE,  _______, _______, _______, _______, _______, _______, _______,
         _______, ORANGE,  _______, CORAL,   _______, AZURE,   AZURE,   _______, _______, _______, _______, AZURE,                              SPRING,
         _______, _______, _______,                   _______,                            _______, PINK,    _______, AZURE,            _______, SPRING, _______
@@ -165,42 +136,26 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     [_ML] = {
         _______, GOLD,    GOLD,    GOLD,   _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______,
         _______, MAGENT,  MAGENT,  MAGENT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, MAGENT,  GOLD,    MAGENT, GOLD,    _______, _______, MAGENT,  MAGENT,  _______, GOLD,    _______, _______, _______, _______, _______, _______,
-        _______, GOLD,    GOLD,    GOLD,   GOLD,    _______, GOLD,    GOLD,    GOLD,    GOLD,    GOLD,    _______, _______,
+        _______, MAGENT,  GOLD,    MAGENT, GOLD,    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, GOLD,    GOLD,    GOLD,   GOLD,    _______, _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, CORAL,  _______, _______, _______, _______, _______, _______, _______, _______,                            GOLD,
         _______, PINK,    _______,                  _______,                                     _______, PINK,    _______, _______, GOLD,    GOLD,    GOLD
     },
     [_GL] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, BLUE,    AZURE,   AZURE,   ORANGE,  CYAN,    _______, TURQ,    PURPLE,  _______, _______, _______, _______, _______,
-        _______, CORAL,   GREEN,   GREEN,   TURQ,    _______, _______, _______, _______, GREEN,   _______, ORANGE,  _______,
+        _______, _______, _______, _______, BLUE,    AZURE,   AZURE,   _______, CYAN,    _______, TURQ,    PURPLE,  _______, _______, _______, _______, _______,
+        _______, CORAL,   GREEN,   GREEN,   TURQ,    _______, _______, _______, _______, GREEN,   _______, _______, _______,
         _______, CYAN,    CHART,   TURQ,    ORANGE,  CHART,   _______, CHART,   _______, _______, _______, _______,                            _______,
-        _______, PINK,    _______,                   PINK,                               _______, PINK,    _______, _______,          _______, _______, _______
+        _______, _______, _______,                   _______,                            _______, PINK,    _______, _______,          _______, _______, _______
     },
     [_VL] = {
-        YELLOW,  WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,            WHITE,   WHITE,   WHITE,  
-        GREEN,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   GREEN,   GREEN,   ORANGE,  WHITE,   WHITE,   WHITE,   WHITE,  
-        WHITE,   YELLOW,  GREEN,   GREEN,   YELLOW,  GREEN,   ORANGE,  YELLOW,  YELLOW,  YELLOW,  YELLOW,  GREEN,   GREEN,   WHITE,   WHITE,   WHITE,   WHITE,  
-        YELLOW,  YELLOW,  YELLOW,  ORANGE,  GREEN,   WHITE,   GREEN,   GREEN,   GREEN,   GREEN,   GREEN,   GREEN,   WHITE,  
-        WHITE,   WHITE,   YELLOW,  ORANGE,  YELLOW,  GREEN,   GREEN,   YELLOW,  GREEN,   YELLOW,  GREEN,   WHITE,                              WHITE,  
-        WHITE,   MAGENT,  WHITE,                     WHITE,                              WHITE,   PINK,    WHITE,   WHITE,            WHITE,   WHITE,   WHITE
-    },
-    [UVL] = {
-        YELLOW,  WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,            WHITE,   WHITE,   WHITE,  
-        YELLOW,  ORANGE,  YELLOW,  GREEN,   GREEN,   GREEN,   GREEN,   YELLOW,  GREEN,   GREEN,   GREEN,   GREEN,   GREEN,   WHITE,   WHITE,   WHITE,   WHITE,  
-        WHITE,   YELLOW,  GREEN,   GREEN,   YELLOW,  GREEN,   YELLOW,  YELLOW,  YELLOW,  YELLOW,  YELLOW,  GREEN,   GREEN,   WHITE,   WHITE,   WHITE,   WHITE,  
-        YELLOW,  YELLOW,  YELLOW,  YELLOW,  GREEN,   GREEN,   GREEN,   YELLOW,  GREEN,   GREEN,   YELLOW,  WHITE,   GREEN,
-	    WHITE,   WHITE,   YELLOW,  YELLOW,  YELLOW,  GREEN,   GREEN,   GREEN,   ORANGE,  ORANGE,  GREEN,   WHITE,                              WHITE,  
-        WHITE,   MAGENT,  WHITE,                     WHITE,                              WHITE,   PINK,    WHITE,   WHITE,            WHITE,   WHITE,   WHITE
-    },
-    [VML] = {
-        _______, _______, GOLD,    GOLD,    GOLD,   _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______,
-        _______, _______, MAGENT,  MAGENT,  MAGENT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, MAGENT,  GOLD,    MAGENT, GOLD,    _______, GREEN,   _______, _______, BLUE,    _______, _______, _______, _______, _______, _______,
-        _______, _______, GOLD,    GOLD,    GOLD,   GOLD,    GREEN,   GREEN,   GREEN,   BLUE,    BLUE,    BLUE,    _______,
-        _______, _______, _______, CORAL,  _______, _______, _______, _______, _______, _______, _______, _______,                            GOLD,
-        _______, PINK,    _______,                  _______,                                     _______, PINK,    _______, _______, GOLD,    GOLD,    GOLD
+        PURPLE,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______,
+        _______, _______, _______, TURQ,    _______, _______, _______, _______, TURQ,    _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, AZURE,   AZURE,   AZURE,   PURPLE,  _______, BLUE,    PURPLE,  PURPLE,  PURPLE,  BLUE,    _______, _______, _______, _______, _______, _______,
+        _______, PURPLE,  _______, BLUE,    _______, GOLD,    GOLDEN,  GOLDEN,  GOLDEN,  GOLDEN,  _______, _______, _______,
+        _______, _______, BLUE,    BLUE,    _______, _______, TURQ,    _______, _______, _______, TURQ,    _______,                            _______,
+        _______, _______, _______,                   _______,                            _______, PINK,    _______, _______,          _______, _______, _______
     },
     [_YL] = {
         RED,     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______,
@@ -209,14 +164,6 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         _______, BLUE,    _______, BLUE,    _______, MAGENT,  _______, GREEN,   GREEN,   GREEN,   MAGENT,  _______, _______,
         _______, ORANGE,  ORANGE,  _______, _______, _______, _______, RED,     MAGENT,  MAGENT,  _______, _______,                            GREEN,
         _______, _______, _______,                   _______,                   _______, PINK,    _______, _______,                   BLUE,    GREEN,   BLUE
-    },
-    [GWL] = {
-        RED,     WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,            WHITE,   WHITE,  WHITE,   
-        RED,     WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   RED,     RED,     WHITE,   WHITE,  WHITE,   
-        RED,     WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   RED,     RED,     WHITE,   WHITE,  WHITE,
-        RED,     WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   RED,    
-        RED,     WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   WHITE,   RED,                                WHITE,
-        RED,     RED,     RED,                       WHITE,                     RED,     RED,     RED,     RED,                       WHITE,   WHITE,   WHITE
     },
 };
 
@@ -397,7 +344,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
                 rgb_time_out_fast_mode_enabled = !rgb_time_out_fast_mode_enabled;
                 return false;
-            case G_INIT ... G_REBMI:
+            case G_INIT ... G_LOG:
                 send_string_with_delay(sendstring_commands[keycode - G_INIT], 5);
                 return false;
         }
